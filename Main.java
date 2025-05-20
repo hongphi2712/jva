@@ -3,7 +3,7 @@ import java.io.*;
 
 interface Animal{
     void eat();
-    void showInfo();
+    String showInfo();
 }
 interface Bird extends Animal{
     void fly();
@@ -45,20 +45,19 @@ class Peagus implements Bird,Horse{
         System.out.println(name + "'s running");
     }
     @Override
-    public void showInfo()
+    public String showInfo()
     {
-        System.out.println("Name: "+name);
-        System.out.println("Age: "+ age);
-
+        return "Name: " + name + ", Age: " + age;
     }
 
-}
+    }
 public class Main{
     public static void main(String[] args) {
-//        cau1();
-//        cau2();
+        cau1();
+        cau2();
         cau3();
         cau4();
+        cau5();
     }
     public static void cau1()
     {
@@ -68,9 +67,11 @@ public class Main{
         p1.eat();
         p1.fly();
         p1.run();
+        System.out.println(p1.showInfo());
         p2.eat();
         p2.run();
         p2.fly();
+        System.out.println(p2.showInfo());
     }
     public static void cau2(){
         try(Scanner scanner = new Scanner(System.in)){
@@ -136,20 +137,22 @@ public class Main{
         thread1.start();
         thread2.start();
     }
-    public static void cau5() {
-        ArrayList<Pegasus> list = new ArrayList<>();
-        list.add(new Pegasus("Pegasus1", 3));
-        list.add(new Pegasus("Pegasus2", 5));
+    public static void cau5()
+    {
+        ArrayList<Peagus> list =   new ArrayList<>();
+        list.add(new Peagus("Peagus 1",3));
+        list.add(new Peagus("Peagus 2",5));
 
-        Map<Integer, Pegasus> map = new HashMap<>();
+        Map<Integer,Peagus> map = new HashMap();
         int key = 1;
-        for (Pegasus p : list) {
-            map.put(key++, p);
+        for(Peagus p : list)
+        {
+            map.put(key++,p);
         }
 
-        for (Map.Entry<Integer, Pegasus> entry : map.entrySet()) {
-            System.out.println("Key: " + entry.getKey() + ", Value: ");
-            entry.getValue().showInfo();
+        for(Map.Entry<Integer,Peagus> entry : map.entrySet())
+        {
+            System.out.println("Key: "+ entry.getKey() + ",Value: " + entry.getValue().showInfo());
         }
     }
 }

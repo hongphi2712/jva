@@ -364,3 +364,80 @@ public class Main
     }
 }
 
+
+
+import java.io.DataOutputStream;
+import java.io.FileOutputStream;
+import java.io.*;
+
+interface Ishape {
+    void showInfo();
+    double getArea();
+    double getPerimeter();
+}
+
+class Circle implements Ishape {
+    private double radius;
+    private static final double PI = 3.1416;
+
+    public Circle(double radius) {
+        this.radius = radius;
+    }
+
+    @Override
+    public double getArea() {
+        return PI * radius * radius;
+    }
+
+    @Override
+    public double getPerimeter() {
+        return 2 * PI * radius;
+    }
+
+    @Override
+    public void showInfo() {
+        System.out.println("Ban kinh: " + radius);
+        System.out.println("Dien tich: " + getArea());
+        System.out.println("Chu vi: " + getPerimeter());
+    }
+}
+
+class Rectangle implements Ishape {
+    private double width, height;
+
+    public Rectangle(double width, double height) {
+        this.width = width;
+        this.height = height;
+    }
+
+    @Override
+    public double getArea() {
+        return width * height;
+    }
+
+    @Override
+    public double getPerimeter() {
+        return (width + height) * 2;
+    }
+
+    @Override
+    public void showInfo() {
+        System.out.println("Chieu dai: " + width);
+        System.out.println("Chieu rong: " + height);
+        System.out.println("Dien tich: " + getArea());
+        System.out.println("Chu vi: " + getPerimeter());
+    }
+}
+
+public class Kalo {
+    public static void main(String[] args) {
+        Circle circle = new Circle(25.5);
+        circle.showInfo();
+
+        System.out.println(); // Dòng trống để phân tách
+
+        Rectangle rectangle = new Rectangle(5, 12);
+        rectangle.showInfo();
+    }
+}
+
